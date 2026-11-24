@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>팀원 소개 - 팀 위키</title>
     <link rel="stylesheet" href="./team.css" />
+    <link rel="stylesheet" href="./profiles.css" />
   </head>
   <body>
     <header class="top-bar">
@@ -53,9 +54,9 @@
         </p>
 
         <nav class="toc" aria-label="목차">
-          <h2 class="toc-title">목차</h2>
+          <div class="toc-header"><h2 class="toc-title">목차</h2><button type="button" class="toc-toggle" id="toc-toggle" aria-controls="toc-list" aria-expanded="true">[접기]</button></div>
 
-          <ol class="toc-list">
+          <ol class="toc-list" id="toc-list">
             <li>
               <a href="#overview"
                 ><span class="section-number">1.</span> 개요</a
@@ -104,16 +105,20 @@
         </nav>
 
         <section id="overview" class="team-section">
-          <h2 class="section-title"><a href="#overview">1.</a> 개요</h2>
+          <h2 class="section-title"><a href="#overview">1.</a> 개요 <button type="button" class="fold-btn" data-target="body-overview" aria-controls="body-overview" aria-expanded="true">[접기]</button></h2>
+<div class="section-body" id="body-overview">
           <p>팀명 일단푸시의 팀원 6명을 소개합니다.</p>
-        </section>
+        </div>
+</section>
 
         <section id="members" class="team-section">
-          <h2 class="section-title"><a href="#members">2.</a> 팀원 목록</h2>
+          <h2 class="section-title"><a href="#members">2.</a> 팀원 목록 <button type="button" class="fold-btn" data-target="body-members" aria-controls="body-members" aria-expanded="true">[접기]</button></h2>
+<div class="section-body" id="body-members">
           <p>목차에서 팀원의 이름을 누르면 해당 소개로 이동합니다.</p>
 
           <section id="member1" class="member-section">
-            <h3 class="member-title"><a href="#member1">2.1.</a> 이윤진</h3>
+            <h3 class="member-title"><a href="#member1">2.1.</a> 이윤진 <button type="button" class="fold-btn" data-target="body-member1" aria-controls="body-member1" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-member1">
 
             <article class="member-card">
               <div class="member-thumb">
@@ -125,6 +130,10 @@
               </div>
               <div class="member-info">
                 <div class="info-block">
+                  <h4>담당 역할</h4>
+                  <p>메인 페이지(Main Page) UI 구현 및 전체 레이아웃 설계</p>
+                </div>
+                <div class="info-block">
                   <h4>소개</h4>
                   <p>소개 문장을 입력하세요.</p>
                 </div>
@@ -138,10 +147,12 @@
                 </div>
               </div>
             </article>
-          </section>
+          </div>
+</section>
 
           <section id="member2" class="member-section">
-            <h3 class="member-title"><a href="#member2">2.2.</a> 박현정</h3>
+            <h3 class="member-title"><a href="#member2">2.2.</a> 박현정 <button type="button" class="fold-btn" data-target="body-member2" aria-controls="body-member2" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-member2">
 
             <article class="member-card">
               <div class="member-thumb">
@@ -153,6 +164,10 @@
               </div>
               <div class="member-info">
                 <div class="info-block">
+                  <h4>담당 역할</h4>
+                  <p>전체 서비스 UI/UX 디자인 및 스타일 가이드 수립</p>
+                </div>
+                <div class="info-block">
                   <h4>소개</h4>
                   <p>소개 문장을 입력하세요.</p>
                 </div>
@@ -166,10 +181,12 @@
                 </div>
               </div>
             </article>
-          </section>
+          </div>
+</section>
 
           <section id="member3" class="member-section">
-            <h3 class="member-title"><a href="#member3">2.3.</a> 김서영</h3>
+            <h3 class="member-title"><a href="#member3">2.3.</a> 김서영 <button type="button" class="fold-btn" data-target="body-member3" aria-controls="body-member3" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-member3">
 
             <article class="member-card">
               <div class="member-thumb">
@@ -181,6 +198,10 @@
               </div>
               <div class="member-info">
                 <div class="info-block">
+                  <h4>담당 역할</h4>
+                  <p>개발 과정(Development Process) 페이지 개발 및 협업 히스토리 정리</p>
+                </div>
+                <div class="info-block">
                   <h4>소개</h4>
                   <p>소개 문장을 입력하세요.</p>
                 </div>
@@ -194,10 +215,12 @@
                 </div>
               </div>
             </article>
-          </section>
+          </div>
+</section>
 
           <section id="member4" class="member-section">
-            <h3 class="member-title"><a href="#member4">2.4.</a> 이병민</h3>
+            <h3 class="member-title"><a href="#member4">2.4.</a> 이병민 <button type="button" class="fold-btn" data-target="body-member4" aria-controls="body-member4" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-member4">
 
             <article class="member-card">
               <div class="member-thumb">
@@ -208,6 +231,10 @@
                 </div>
               </div>
               <div class="member-info">
+                <div class="info-block">
+                  <h4>담당 역할</h4>
+                  <p>갤러리(Gallery) 페이지 개발 및 미디어 아카이빙 뷰 구현</p>
+                </div>
                 <div class="info-block">
                   <h4>소개</h4>
                   <p>25살 26학번 입니다</p>
@@ -223,10 +250,12 @@
                 </div>
               </div>
             </article>
-          </section>
+          </div>
+</section>
 
           <section id="member5" class="member-section">
-            <h3 class="member-title"><a href="#member5">2.5.</a> 정희돈</h3>
+            <h3 class="member-title"><a href="#member5">2.5.</a> 정희돈 <button type="button" class="fold-btn" data-target="body-member5" aria-controls="body-member5" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-member5">
 
             <article class="member-card">
               <div class="member-thumb">
@@ -237,6 +266,10 @@
                 </div>
               </div>
               <div class="member-info">
+                <div class="info-block">
+                  <h4>담당 역할</h4>
+                  <p>팀 소개(About Team) 페이지 개발 및 프로젝트 비전 시각화</p>
+                </div>
                 <div class="info-block">
                   <h4>소개</h4>
                   <p>소개 문장을 입력하세요.</p>
@@ -251,10 +284,12 @@
                 </div>
               </div>
             </article>
-          </section>
+          </div>
+</section>
 
           <section id="member6" class="member-section">
-            <h3 class="member-title"><a href="#member6">2.6.</a> 박지훈</h3>
+            <h3 class="member-title"><a href="#member6">2.6.</a> 박지훈 <button type="button" class="fold-btn" data-target="body-member6" aria-controls="body-member6" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-member6">
 
             <article class="member-card">
               <div class="member-thumb">
@@ -265,6 +300,10 @@
                 </div>
               </div>
               <div class="member-info">
+                <div class="info-block">
+                  <h4>담당 역할</h4>
+                  <p>팀원 소개(Team Members) 페이지 개발 및 프로필 인터랙션 구현</p>
+                </div>
                 <div class="info-block">
                   <h4>소개</h4>
                   <p>
@@ -283,8 +322,10 @@
                 </div>
               </div>
             </article>
-          </section>
-        </section>
+          </div>
+</section>
+        </div>
+</section>
 
         <footer id="site-footer" class="document-footer">
           <p>이 문서는 팀 프로젝트의 팀원 소개 문서입니다.</p>

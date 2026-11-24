@@ -1,0 +1,118 @@
+/* 메인과 팀원 소개에서 함께 사용하는 프로필 카드 */
+.member-card {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  width: 100%;
+  background: #fcfdfd;
+  border: 1px solid #d8dce0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* 왼쪽: 이름 첫 글자 아바타 (사진을 넣고 싶으면 img로 교체) */
+.member-thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px 16px;
+  background: var(--accent-soft, #f1f8f7);
+  border-right: 1px solid var(--line, #dee2e6);
+}
+
+.member-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border: 2px solid var(--accent, #00a495);
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--accent-deep, #00695c);
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.member-name {
+  margin: 0;
+  color: var(--title, #111315);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.member-badge {
+  padding: 1px 10px;
+  border: 1px solid var(--accent, #00a495);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--accent-deep, #00695c);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* 오른쪽: 소개 / 관심분야 / 학습목표 */
+.member-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  padding: 22px 28px;
+}
+
+.info-block h4 {
+  margin: 0 0 4px;
+  color: var(--accent-deep, #00695c);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.info-block p {
+  margin: 0;
+  word-break: keep-all;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-list li {
+  padding: 1px 10px;
+  border: 1px solid var(--accent, #00a495);
+  border-radius: 999px;
+  background: var(--accent-soft, #f1f8f7);
+  color: var(--accent-deep, #00695c);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .member-card {
+    grid-template-columns: 1fr;
+  }
+
+  .member-thumb {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--line, #dee2e6);
+  }
+
+  .member-avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+
+  .member-info {
+    padding: 18px 20px 20px;
+  }
+}

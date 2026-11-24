@@ -280,7 +280,7 @@ mark.search-mark {
   overflow-wrap: anywhere;
 }
 
-.team-section > p {
+.team-section > .section-body > p {
   margin: 0 0 18px;
 }
 
@@ -303,99 +303,6 @@ mark.search-mark {
 
 .member-title a {
   color: var(--accent-dark);
-}
-
-.member-card {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  width: 100%;
-  background: #fcfdfd;
-  border: 1px solid #d8dce0;
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-/* 왼쪽: 이름 첫 글자 아바타 (사진을 넣고 싶으면 img로 교체) */
-.member-thumb {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 24px 16px;
-  background: var(--accent-soft);
-  border-right: 1px solid var(--line);
-}
-
-.member-avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 84px;
-  height: 84px;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  background: #ffffff;
-  color: var(--accent-deep);
-  font-size: 34px;
-  font-weight: 800;
-}
-
-.member-name {
-  margin: 0;
-  color: var(--title);
-  font-size: 18px;
-  font-weight: 800;
-}
-
-.member-badge {
-  padding: 1px 10px;
-  border: 1px solid var(--accent);
-  border-radius: 999px;
-  background: #ffffff;
-  color: var(--accent-deep);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-/* 오른쪽: 소개 / 관심분야 / 학습목표 */
-.member-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-  padding: 22px 28px;
-}
-
-.info-block h4 {
-  margin: 0 0 4px;
-  color: var(--accent-deep);
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.info-block p {
-  margin: 0;
-  word-break: keep-all;
-}
-
-.tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.tag-list li {
-  padding: 1px 10px;
-  border: 1px solid var(--accent);
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent-deep);
-  font-size: 12.5px;
-  font-weight: 600;
 }
 
 /* =========================
@@ -438,31 +345,6 @@ mark.search-mark {
   }
 }
 
-@media (max-width: 768px) {
-  .member-card {
-    grid-template-columns: 1fr;
-  }
-
-  .member-thumb {
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 14px;
-    padding: 16px 20px;
-    border-right: none;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .member-avatar {
-    width: 56px;
-    height: 56px;
-    font-size: 24px;
-  }
-
-  .member-info {
-    padding: 18px 20px 20px;
-  }
-}
-
 @media (max-width: 600px) {
   .logo {
     font-size: 22px;
@@ -492,3 +374,14 @@ mark.search-mark {
     font-size: 16px;
   }
 }
+
+/* 목차 및 문단 접기·펼치기 (about.css 디자인 기준) */
+.toc-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 8px; }
+.toc-header .toc-title { margin: 0; }
+.wiki-article .section-title, .wiki-article .member-title { display: flex; align-items: center; gap: 6px; }
+.wiki-article .toc-toggle, .wiki-article .fold-btn { padding: 0; border: none; border-radius: 0; background: none; color: var(--link); font-size: 12.5px; font-weight: 400; cursor: pointer; white-space: nowrap; }
+.wiki-article .fold-btn { margin-left: auto; font-weight: 600; flex-shrink: 0; }
+.wiki-article .toc-toggle:hover, .wiki-article .fold-btn:hover { background: none; text-decoration: underline; }
+.wiki-article .toc-toggle:focus-visible, .wiki-article .fold-btn:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+.wiki-article [hidden] { display: none !important; }
+.wiki-article section { scroll-margin-top: 84px; }

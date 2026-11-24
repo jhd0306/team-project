@@ -47,9 +47,9 @@
             <p class="intro">팀 프로젝트와 팀원들의 개인 프로젝트를 한눈에 볼 수 있는 공간입니다.</p>
 
             <nav class="toc" aria-label="목차">
-                <h2 class="toc-title">목차</h2>
+                <div class="toc-header"><h2 class="toc-title">목차</h2><button type="button" class="toc-toggle" id="toc-toggle" aria-controls="toc-list" aria-expanded="true">[접기]</button></div>
 
-                <ol class="toc-list">
+                <ol class="toc-list" id="toc-list">
                     <li>
                         <a href="#team-project">
                             <span class="section-number">1.</span> 팀 프로젝트
@@ -74,7 +74,8 @@
             </nav>
 
             <section id="team-project" class="gallery-section">
-                <h2 class="section-title"><a href="#team-project">1.</a> 팀 프로젝트</h2>
+                <h2 class="section-title"><a href="#team-project">1.</a> 팀 프로젝트 <button type="button" class="fold-btn" data-target="body-team-project" aria-controls="body-team-project" aria-expanded="true">[접기]</button></h2>
+<div class="section-body" id="body-team-project">
                 <p>팀이 함께 만든 대표 프로젝트입니다.</p>
 
                 <article class="project-card gallery-team-card">
@@ -88,32 +89,26 @@
                         <p class="project-tech">사용 기술: HTML, CSS, JavaScript</p>
                     </div>
                 </article>
-            </section>
+            </div>
+</section>
 
            
             <section id="personal-projects" class="gallery-section">
-                <h2 class="section-title"><a href="#personal-projects">2.</a> 개인 프로젝트</h2>
+                <h2 class="section-title"><a href="#personal-projects">2.</a> 개인 프로젝트 <button type="button" class="fold-btn" data-target="body-personal-projects" aria-controls="body-personal-projects" aria-expanded="true">[접기]</button></h2>
+<div class="section-body" id="body-personal-projects">
                 <p>팀원 각자가 만든 개인 프로젝트입니다.</p>
 
                 
                 <section id="project1" class="member-section">
-                    <h3 class="member-title"><a href="#project1">2.1.</a> 이윤진</h3>
-
-                    <article class="project-card personal-card">
-                        <div class="project-thumb">
-                            <img src="images/project-1.png" alt="이윤진 프로젝트 이미지">
-                        </div>
-                        <div class="project-info">
-                            <h4 class="project-title">프로젝트 제목 1</h4>
-                            <p class="project-desc">프로젝트 소개를 입력하세요.</p>
-                            <p class="project-tech">사용 기술: </p>
-                        </div>
-                    </article>
-                </section>
+                    <h3 class="member-title"><a href="#project1">2.1.</a> 이윤진 <button type="button" class="fold-btn" data-target="body-project1" aria-controls="body-project1" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-project1">
+                </div>
+</section>
 
               
                 <section id="project2" class="member-section">
-                    <h3 class="member-title"><a href="#project2">2.2.</a> 박현정</h3>
+                    <h3 class="member-title"><a href="#project2">2.2.</a> 박현정 <button type="button" class="fold-btn" data-target="body-project2" aria-controls="body-project2" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-project2">
 
                     <article class="project-card personal-card">
                         <div class="project-thumb">
@@ -125,27 +120,20 @@
                             <p class="project-tech">사용 기술: HTML, CSS, JS</p>
                         </div>
                     </article>
-                </section>
+                </div>
+</section>
 
                
                 <section id="project3" class="member-section">
-                    <h3 class="member-title"><a href="#project3">2.3.</a> 김서영</h3>
-
-                    <article class="project-card personal-card">
-                        <div class="project-thumb">
-                            <img src="images/project-3.png" alt="김서영 프로젝트 이미지">
-                        </div>
-                        <div class="project-info">
-                            <h4 class="project-title">프로젝트 제목 3</h4>
-                            <p class="project-desc">프로젝트 소개를 입력하세요.</p>
-                            <p class="project-tech">사용 기술: </p>
-                        </div>
-                    </article>
-                </section>
+                    <h3 class="member-title"><a href="#project3">2.3.</a> 김서영 <button type="button" class="fold-btn" data-target="body-project3" aria-controls="body-project3" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-project3">
+                </div>
+</section>
 
                 
                 <section id="project4" class="member-section">
-                    <h3 class="member-title"><a href="#project4">2.4.</a> 이병민</h3>
+                    <h3 class="member-title"><a href="#project4">2.4.</a> 이병민 <button type="button" class="fold-btn" data-target="body-project4" aria-controls="body-project4" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-project4">
 
                     <article class="project-card personal-card">
                         <div class="project-thumb">
@@ -157,11 +145,13 @@
                             <p class="project-tech">사용 기술: HTML, CSS, JS</p>
                         </div>
                     </article>
-                </section>
+                </div>
+</section>
 
                 
                 <section id="project5" class="member-section">
-                    <h3 class="member-title"><a href="#project5">2.5.</a> 정희돈</h3>
+                    <h3 class="member-title"><a href="#project5">2.5.</a> 정희돈 <button type="button" class="fold-btn" data-target="body-project5" aria-controls="body-project5" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-project5">
 
                     <article class="project-card personal-card">
                         <div class="project-thumb">
@@ -173,11 +163,13 @@
                             <p class="project-tech">사용 기술: HTML, CSS, JS</p>
                         </div>
                     </article>
-                </section>
+                </div>
+</section>
 
                 
                 <section id="project6" class="member-section">
-                    <h3 class="member-title"><a href="#project6">2.6.</a> 박지훈</h3>
+                    <h3 class="member-title"><a href="#project6">2.6.</a> 박지훈 <button type="button" class="fold-btn" data-target="body-project6" aria-controls="body-project6" aria-expanded="true">[접기]</button></h3>
+<div class="section-body" id="body-project6">
 
                     <article class="project-card personal-card">
                         <div class="project-thumb">
@@ -189,8 +181,10 @@
                             <p class="project-tech">사용 기술: HTML, CSS, JS</p>
                         </div>
                     </article>
-                </section>
-            </section>
+                </div>
+</section>
+            </div>
+</section>
 
            
             <footer id="site-footer" class="document-footer">

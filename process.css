@@ -640,8 +640,6 @@ body {
 .toc ol { list-style: none; padding-left: 0; }
 .toc ol ol { padding-left: 18px; }
 .sub-section-title a { text-decoration: none; }
-.sub-section-title::after { content: "[펼치기]"; margin-left: auto; color: var(--link); font-size: 12.5px; font-weight: 600; }
-.section-toggle-card[open] > summary .sub-section-title::after { content: "[접기]"; }
 .section-toggle-card { scroll-margin-top: 90px; }
 .meeting-inner-card { background: #fafafa; }
 .gh-commit-info { min-width: 0; overflow-wrap: anywhere; }
@@ -651,3 +649,12 @@ body {
 .project-title { margin: 0; font-size: 18px; }
 .project-tech { color: var(--accent-deep); font-size: 13px; }
 @media(max-width:600px) { .gh-commit-row { flex-wrap: wrap; padding: 10px; gap: 8px; } .meeting-inner-card { padding: 10px; } .wiki-table th,.wiki-table td { padding: 7px; } #meetings .wiki-table th { width: 28%; } #meetings .wiki-table td { width: 72%; } .sub-section-title { font-size: 16px; } }
+
+/* 팀원 소개 및 갤러리와 동일한 접기·펼치기 버튼 */
+.wiki-article .section-title, .wiki-article .sub-section-title { display: flex; align-items: center; gap: 6px; }
+.wiki-article .fold-btn { margin-left: auto; flex-shrink: 0; white-space: nowrap; }
+.wiki-article .toc-toggle { white-space: nowrap; }
+.wiki-article .toc-toggle:focus-visible, .wiki-article .fold-btn:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+.wiki-article [hidden] { display: none !important; }
+
+.project-thumb img { display: block; max-width: 100%; height: auto; }

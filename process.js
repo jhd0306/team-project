@@ -1,96 +1,115 @@
+const form = document.getElementById("search-form");
+const input = document.getElementById("search-input");
+const article = document.querySelector(".wiki-article");
 
- // 문서 검색 기능
-const searchForm = document.querySelector("#search-form");
-const searchInput = document.querySelector("#search-input");
+// 이전 검색 표시 지우기
+function clearMarks() {
+  article.querySelectorAll("mark.search-mark").forEach((mark) => {
+    mark.replaceWith(document.createTextNode(mark.textContent));
+  });
+  article.normalize(); // 쪼개진 텍스트 노드 다시 합치기
+}
 
-if (searchForm && searchInput) {
-  searchForm.addEventListener("submit", function (event) {
-    event.preventDefault();
+// 검색어가 들어간 텍스트를 <mark>로 감싸기
+function highlight(keyword) {
+  const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT);
+  const targets = [];
 
-    const keyword = searchInput.value.trim().toLowerCase();
-
-    if (!keyword) {
-      alert("검색어를 입력해주세요.");
-      return;
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (node.parentElement.closest("button, script, style, .toc")) continue;
+    if (node.nodeValue.toLowerCase().includes(keyword.toLowerCase())) {
+      targets.push(node);
     }
+  }
 
-    const sections = document.querySelectorAll(
-      ".wiki-article section"
-    );
+  const regex = new RegExp(
+    keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+    "gi"
+  );
 
-    let found = false;
+  targets.forEach((node) => {
+    const text = node.nodeValue;
+    const frag = document.createDocumentFragment();
+    let last = 0;
 
-    sections.forEach(function (section) {
-      section.classList.remove("search-highlight");
+    text.replace(regex, (match, offset) => {
+      frag.append(document.createTextNode(text.slice(last, offset)));
+      const mark = document.createElement("mark");
+      mark.className = "search-mark";
+      mark.textContent = match;
+      frag.append(mark);
+      last = offset + match.length;
     });
 
-    for (const section of sections) {
-      const content = section.textContent.toLowerCase();
-
-      if (content.includes(keyword)) {
-        section.querySelectorAll("details").forEach(detail => {
-          if (detail.textContent.toLowerCase().includes(keyword))
-            detail.open = true;
-        });
-
-        section.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
-        section.classList.add("search-highlight");
-
-        found = true;
-        break;
-      }
-    }
-
-    if (!found) {
-      alert("검색 결과가 없습니다.");
-    }
+    frag.append(document.createTextNode(text.slice(last)));
+    node.replaceWith(frag);
   });
 }
 
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  clearMarks();
 
-// 스크롤 시 헤더 그림자 강조
-const mainHeader = document.querySelector("#main-header");
+  const keyword = input.value.trim();
+  if (!keyword) return;
 
-if (mainHeader) {
-  window.addEventListener("scroll", function () {
-    mainHeader.classList.toggle("scrolled", window.scrollY > 30);
-  });
-}
+  highlight(keyword);
 
-
-// 검색창 밖의 다른 화면을 클릭하면 검색 강조 해제
-document.addEventListener("click", function (event) {
-  if (searchForm && searchForm.contains(event.target)) return;
-
-  document.querySelectorAll(".search-highlight").forEach(function (el) {
-    el.classList.remove("search-highlight");
-  });
+  const first = article.querySelector("mark.search-mark");
+  if (first) {
+    article.querySelectorAll("mark.search-mark").forEach(revealFoldedContent);
+    first.scrollIntoView({ behavior: "smooth", block: "center" });
+  } else {
+    alert("검색 결과가 없습니다.");
+  }
 });
 
-
-// 목차 접기 / 펼치기
-const tocToggle = document.querySelector("#toc-toggle");
-const tocList = document.querySelector("#toc-list");
-
-if (tocToggle && tocList) {
-  tocToggle.addEventListener("click", function () {
-    const hidden = tocList.style.display === "none";
-
-    tocList.style.display = hidden ? "" : "none";
-    tocToggle.textContent = hidden ? "[접기]" : "[펼치기]";
-    tocToggle.setAttribute("aria-expanded", String(hidden));
-  });
+// 목차 및 문단 접기·펼치기
+function setFold(button, expanded) {
+    const body = document.getElementById(button.getAttribute("aria-controls"));
+    if (!body) return;
+    body.hidden = !expanded;
+    button.textContent = expanded ? "[접기]" : "[펼치기]";
+    button.setAttribute("aria-expanded", String(expanded));
 }
 
+function revealFoldedContent(target) {
+    for (let el = target; el; el = el.parentElement) {
+        if (el.hidden && el.id) {
+            const button = Array.from(document.querySelectorAll(".fold-btn, .toc-toggle"))
+                .find(btn => btn.getAttribute("aria-controls") === el.id);
+            if (button) setFold(button, true);
+        }
+    }
+    if (target.matches("section, .section-toggle-card")) {
+        const button = target.querySelector(":scope > h2 > .fold-btn, :scope > h3 > .fold-btn");
+        if (button) setFold(button, true);
+    }
+}
 
-// 목차에서 닫힌 항목으로 이동할 때 자동 펼치기
-document.querySelectorAll(".toc a").forEach(link =>
-  link.addEventListener("click", () => {
-    const target = document.getElementById(link.hash.slice(1));
-    if (target && target.tagName === "DETAILS") target.open = true;
-  })
-);
+document.querySelectorAll(".fold-btn, .toc-toggle").forEach(button => {
+    button.addEventListener("click", () => setFold(button, button.getAttribute("aria-expanded") !== "true"));
+});
+
+// 목차 이동 시 접힌 상위 문단과 해당 문단을 자동으로 펼침
+function revealHash() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const target = document.getElementById(id);
+    if (target) { revealFoldedContent(target); target.scrollIntoView(); }
+}
+document.querySelectorAll('.toc a[href^="#"]').forEach(link => {
+    link.addEventListener("click", () => {
+        const target = document.getElementById(link.hash.slice(1));
+        if (target) revealFoldedContent(target);
+    });
+});
+window.addEventListener("hashchange", revealHash);
+if (location.hash) revealHash();
+
+// 기존 헤더 스크롤 효과 유지
+const mainHeader = document.querySelector("#main-header");
+if (mainHeader) {
+    window.addEventListener("scroll", () => mainHeader.classList.toggle("scrolled", window.scrollY > 30));
+}
